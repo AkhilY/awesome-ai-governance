@@ -1,0 +1,35 @@
+name: AI Governance Gatekeeper
+on:
+  pull_request:
+    paths:
+      - 'projects/ai-governance-gatekeeper/**'
+      - '.github/workflows/ai-governance-gatekeeper.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'projects/ai-governance-gatekeeper/**'
+      - '.github/workflows/ai-governance-gatekeeper.yml'
+permissions:
+  contents: read
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/ai-governance-gatekeeper
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Run automated tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate example AI governance manifest
+        run: python -m governance.check examples/senior_assistant.json --output governance-report.json
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-governance-report
+          path: projects/ai-governance-gatekeeper/governance-report.json
+          if-no-files-found: ignore
