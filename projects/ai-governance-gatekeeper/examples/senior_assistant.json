@@ -1,0 +1,17 @@
+{
+  "system_name": "Senior Companion Demo",
+  "owner": "Product Safety Lead",
+  "intended_purpose": "Help older adults navigate schedules and educational resources",
+  "data_sources": [
+    "User-entered calendar information",
+    "Curated educational material"
+  ],
+  "risk_level": "high",
+  "privacy_review": "reviews/privacy-review-001.md",
+  "evaluation_report": "reviews/evaluation-001.md",
+  "fairness_assessment": "reviews/fairness-001.md",
+  "incident_response_plan": "reviews/incident-plan-001.md",
+  "human_oversight": true,
+  "approval_reference": "reviews/approval-001.md",
+  "mitigation_plan": "reviews/mitigation-001.md"
+}
